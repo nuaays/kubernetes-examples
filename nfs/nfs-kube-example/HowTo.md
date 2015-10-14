@@ -38,9 +38,9 @@ nfs-web      1/1       Running   0          1h
 ```
 
 ```bash
-	kubectl get svc
+kubectl get svc
 NAME         LABELS                                    SELECTOR          IP(S)           PORT(S)
-	nfs-server   <none>                                    role=nfs-server   192.168.3.194   2049/TCP
+nfs-server   <none>                                    role=nfs-server   192.168.3.194   2049/TCP
 ```
 
 ##### Change nfs-web-pod.yaml
