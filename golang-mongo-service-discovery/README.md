@@ -1,7 +1,9 @@
 Test Service Descovery Using Golang in Kubernetes Cluster
 ================
 
-Deploy Kubernetes Official Example: https://github.com/lth2015/kubernetes-examples/tree/master/kube-mongo-example
+Deploy Kubernetes Official Example
+----
+##### Details: https://github.com/lth2015/kubernetes-examples/tree/master/kube-mongo-example
 ----
 ##### Get the Mongo-Service
 ```bash
@@ -59,6 +61,7 @@ func main() {
 	fmt.Println("Hello world!")
 }
 ```
+[Download file](test.go)
 
 Build Binary Golang-file
 -----
@@ -80,6 +83,7 @@ ADD bin /usr/local/bin
 RUN chmod +x /usr/local/bin
 ENTRYPOINT ["/usr/local/bin/test"]
 ```
+[Download file](Dockerfile)
 
 ##### Docker build
 ```bash
@@ -101,6 +105,7 @@ spec:
     - name: go-test-dns
       image: yeepay/go-test-dns
 ```
+[Download file](go-test-dns-pod.yaml)
 
 ### Run it in Kubernetes cluster
 ```bash
