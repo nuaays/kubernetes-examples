@@ -1,10 +1,12 @@
-
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
+  labels:
+    name: nfs-mongo-svc
   name: nfs-mongo-svc
 spec:
   ports:
     - port: 27017
+      targetPort: 27017
   selector:
-    role: nfs-mongo
+    name: nfs-mongo

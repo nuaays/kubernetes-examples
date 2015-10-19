@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     name: mongo
-  name: mongo
+  name: mongo-svc
 spec:
   ports:
     - port: 27017
