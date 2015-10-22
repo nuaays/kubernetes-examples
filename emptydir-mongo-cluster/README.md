@@ -113,6 +113,7 @@ spec:
         - name: mongo-slave
           emptyDir: {}
 ```
+[Download]("mongodb-slave-controller.yaml")
 
 ##### Create mongodb-slave-controller 
 ```bash
@@ -140,6 +141,7 @@ spec:
   selector:
     name: mongo-slave
 ```
+[Download]("mongodb-slave-service.yaml")
 
 ##### Create mongodb-slave-service
 ```bash
@@ -173,7 +175,8 @@ mongo 192.168.3.242
 >db.data.find()
 { "_id" : ObjectId("5628a69981b0b68ab81adf93"), "name" : "litanhua" }
 { "_id" : ObjectId("5628b519ff4a756747ef3d0b"), "name" : "zhangjingru" }
+>quit()
 ```
 
-It's Ok~~~~~~~
+Yeah! It's Ok~~~~~~~
 -------------------------------------
