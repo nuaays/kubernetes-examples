@@ -24,5 +24,5 @@ spec:
       nfs:
         # FIXME: use the right hostname
         # server: nfs-server.default.cluster.local
-        server: 172.17.0.11
+        server: 172.17.0.1
         path: "/tmp"
