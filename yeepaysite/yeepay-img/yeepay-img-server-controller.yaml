@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: yeepay-img
+  labels:
+    name: yeepay-img
+spec:
+  replicas: 2
+  selector:
+    name: yeepay-img
+  template:
+    metadata:
+      labels:
+        name: yeepay-img
+    spec:
+      containers:
+      - name: master
+        image: yeepay/img-server
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: nfs-yeepay-img
+          mountPath: "/usr/local/yeepay-img/public"
+      volumes:
+        - name: nfs-yeepay-img
+          server: 172.17.0.19
+          path: "/tmp"
