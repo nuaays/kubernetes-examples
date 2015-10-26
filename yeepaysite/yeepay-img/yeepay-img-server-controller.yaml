@@ -20,7 +20,7 @@ spec:
         - containerPort: 8080
         volumeMounts:
         - name: nfs-yeepay-img
-          mountPath: "/usr/local/yeepay-img/public"
+          mountPath: "/usr/local/yeepay-img/public/"
       volumes:
         - name: nfs-yeepay-img
           server: 172.17.0.19

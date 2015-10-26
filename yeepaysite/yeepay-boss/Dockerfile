@@ -14,4 +14,5 @@ RUN cd /usr/local/yeepay-boss
 WORKDIR /usr/local/yeepay-boss
 
 EXPOSE 8080
+
 ENTRYPOINT ["/usr/bin/node", "yeepay-boss.js"]
