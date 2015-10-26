@@ -1,27 +1,27 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: yeepay-img
+  name: yeepay-boss
   labels:
-    name: yeepay-img
+    name: yeepay-boss
 spec:
   replicas: 2
   selector:
-    name: yeepay-img
+    name: yeepay-boss
   template:
     metadata:
       labels:
-        name: yeepay-img
+        name: yeepay-boss
     spec:
       containers:
-      - name: yeepay-img 
-        image: yeepay/img-server
+      - name: yeepay-boss
+        image: yeepay/yeepay-boss
         ports:
         - containerPort: 8080
         volumeMounts:
-        - name: nfs-yeepay-img
-          mountPath: "/usr/local/yeepay-img/public"
+        - name: nfs-yeepay-boss
+          mountPath: "/usr/local/yeepay-boss/public"
       volumes:
-        - name: nfs-yeepay-img
+        - name: nfs-yeepay-boss
           server: 172.17.0.19
           path: "/tmp"
