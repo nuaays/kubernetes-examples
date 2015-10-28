@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: yeepay-img 
-        image: yeepay/img-server
+        image: registry.docker.yeepay.com:5000/yeepay/img-server
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -23,5 +23,5 @@ spec:
           mountPath: "/usr/local/yeepay-img/public/"
       volumes:
         - name: nfs-yeepay-img
-          server: 172.17.0.19
+          server: 172.23.86.22
           path: "/tmp"
