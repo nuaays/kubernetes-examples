@@ -74,17 +74,10 @@ spec:
         name: yeepay-boss
     spec:
       containers:
-      - name: master
-        image: yeepay/yeepay-boss
+      - name: yeepay-boss
+        image: registry.docker.yeepay.com:5000/yeepay/yeepay-boss:v1.0.0
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - name: nfs-yeepay-boss
-          mountPath: "/usr/local/yeepay-boss/public"
-      volumes:
-        - name: nfs-yeepay-boss
-          server: 172.17.0.20
-          path: "/tmp"
 ```
 [Download]("yeepay-boss-server-controller.yaml")
 
@@ -114,6 +107,9 @@ spec:
     # the port that this service should serve on
   - port: 8080
     targetPort: 8080
+    protocol: TCP
+    nodePort: 32766
+  type: "NodePort"
   selector:
     name: yeepay-boss
 ```

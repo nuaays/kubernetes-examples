@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: yeepay-boss
+  name: yeepay-site
   labels:
-    name: yeepay-boss
+    name: yeepay-site
 spec:
   ports:
     # the port that this service should serve on
   - port: 8080
     targetPort: 8080
     protocol: TCP
-    nodePort: 32766
+    nodePort: 32767
   type: "NodePort"
   selector:
-    name: yeepay-boss
+    name: yeepay-site
