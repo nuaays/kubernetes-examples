@@ -1,0 +1,62 @@
+kind: "List"
+apiVersion: "v1"
+id: "kafka"
+items: 
+  - kind: "Pod"
+    apiVersion: "v1"
+    metadata: 
+      name: "kafka-1"
+      labels: 
+        name: "kafka"
+        server-id: "1"
+    spec: 
+      containers: 
+        - name: "kafka"
+          image: "registry.docker.yeepay.com:5000/yeepay/kafka"
+          #env: 
+          #  - name: "BROKERID"
+          #    value: "1"
+          ports: 
+            - containerPort: 9092
+          command: ['/bin/sh', '-c']
+          args: ['sed -i -- ''s/broker.id=0/broker.id=1/g'' /home/kafka/kafka/config/server.properties && sed -i -- ''s/zookeeper.connect=localhost:2181/zookeeper.connect=zookeeper:2181/g'' /home/kafka/kafka/config/server.properties && /home/kafka/kafka/bin/kafka-server-start.sh /home/kafka/kafka/config/server.properties ']
+#  - kind: "Pod"
+#    apiVersion: "v1"
+#    metadata: 
+#      name: "zookeeper-2"
+#      labels: 
+#        name: "zookeeper"
+#        server-id: "2"
+#    spec: 
+#      containers: 
+#        - name: "server"
+#          image: "registry.docker.yeepay.com:5000/yeepay/zookeeper"
+#          env: 
+#            - name: "SERVER_ID"
+#              value: "2"
+#            - name: "MAX_SERVERS"
+#              value: "3"
+#          ports: 
+#            - containerPort: 2181
+#            - containerPort: 2888
+#            - containerPort: 3888
+#  - kind: "Pod"
+#    apiVersion: "v1"
+#    metadata: 
+#      name: "zookeeper-3"
+#      labels: 
+#        name: "zookeeper"
+#        server-id: "3"
+#    spec: 
+#      containers: 
+#        - name: "server"
+#          image: "registry.docker.yeepay.com:5000/yeepay/zookeeper"
+#          env: 
+#            - name: "SERVER_ID"
+#              value: "3"
+#            - name: "MAX_SERVERS"
+#              value: "3"
+#          ports: 
+#            - containerPort: 2181
+#            - containerPort: 2888
+#            - containerPort: 3888
