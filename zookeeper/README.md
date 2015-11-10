@@ -152,6 +152,87 @@ zookeeper-3           name=zookeeper-3                          server-id=3     
 												  3888/TCP 
 ```
 
+### Deploy zookeeper cluster endpoint in Kubernetes Cluster
+##### Create Kubernetes Endpoints: zookeeper-endpoint.json
+```bash
+cat zookeeper-endpoint.json
+{
+    "kind": "Endpoints",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "zookeeper"
+    },
+    "subsets": [
+        {
+            "addresses": [
+                { "IP": "172.23.89.3" },
+                { "IP": "172.23.5.5" },
+                { "IP": "172.23.87.4" },
+                { "IP": "172.23.98.5" },
+                { "IP": "172.23.11.4" }
+            ],
+            "ports": [
+                { "name": "2181", "port": 2181 },
+                { "name": "2888", "port": 2888 },
+                { "name": "3888", "port": 3888 }
+            ]
+        }
+    ]
+}
+
+kubectl create -f zookeeper-endpoint.json
+
+kubectl get ep
+zookeeper-1               172.23.89.3:3888,172.23.89.3:2888,172.23.89.3:2181
+zookeeper-2               172.23.5.5:3888,172.23.5.5:2888,172.23.5.5:2181
+zookeeper-3               172.23.87.4:3888,172.23.87.4:2888,172.23.87.4:2181
+zookeeper-4               172.23.98.5:3888,172.23.98.5:2888,172.23.98.5:2181
+zookeeper-5               172.23.11.4:3888,172.23.11.4:2888,172.23.11.4:2181
+```
+
+### Deploye Zookeeper Service in Kubernetes Cluster
+##### Create Kubernetes Service: zookeeper-service.json
+```bash
+cat zookeeper-service.json
+
+{
+    "kind": "Service",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "zookeeper",
+        "labels": {
+           "name": "zookeeper"
+        }
+    },
+    "spec": {
+        "ports": [
+            {
+	    	"name": "2181",
+                "protocol": "TCP",
+                "port": 2181,
+                "targetPort": 2181
+            },
+            {
+	    	"name": "2888",
+                "protocol": "TCP",
+                "port": 2888,
+                "targetPort": 2888
+            },
+            {
+	    	"name": "3888",
+                "protocol": "TCP",
+                "port": 3888,
+                "targetPort": 3888
+            }
+        ]
+    }
+}
+
+kubectl create -f zookeeper-service.json
+kubectl get svc
+zookeeper                 name=zookeeper                            <none>                                192.168.3.128   2181/TCP
+```
+
 -------------------------------------------------------------------------------------------
 
 ### Test zookeeper cluster
