@@ -154,7 +154,7 @@ zookeeper-3           name=zookeeper-3                          server-id=3     
 
 ### Deploy zookeeper cluster endpoint in Kubernetes Cluster
 ##### Create Kubernetes Endpoints: zookeeper-endpoint.json
-```bash
+```yaml
 cat zookeeper-endpoint.json
 {
     "kind": "Endpoints",
@@ -192,7 +192,7 @@ zookeeper-5               172.23.11.4:3888,172.23.11.4:2888,172.23.11.4:2181
 
 ### Deploye Zookeeper Service in Kubernetes Cluster
 ##### Create Kubernetes Service: zookeeper-service.json
-```bash
+```yaml
 cat zookeeper-service.json
 
 {
