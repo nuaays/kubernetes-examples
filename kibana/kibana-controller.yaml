@@ -17,6 +17,6 @@ spec:
       - name: kibana
         image: registry.docker.yeepay.com:5000/yeepay/kibana-no-nginx:latest
         ports:
-        - containerPort: 5600
+        - containerPort: 5601
           name: ui
           protocol: TCP

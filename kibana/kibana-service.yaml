@@ -7,8 +7,8 @@ metadata:
 spec:
   ports:
     # the port that this service should serve on
-  - port: 5600
-    targetPort: 5600
+  - port: 5601
+    targetPort: 5601
     nodePort: 32763
   type: "NodePort"
   selector:
