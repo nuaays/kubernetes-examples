@@ -16,6 +16,8 @@ spec:
       containers:
       - name: kibana
         image: registry.docker.yeepay.com:5000/yeepay/kibana-no-nginx:latest
+#        command: ['/bin/sh', '-c']
+#        args: ['unset HTTP_PROXY']
         ports:
         - containerPort: 5601
           name: ui
