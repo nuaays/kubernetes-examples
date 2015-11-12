@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   containers:
-  - image: ubuntu-echo
+  - image: registry.docker.yeepay.com:5000/ubuntu-echo
     imagePullPolicy: IfNotPresent
     name: ubuntu-echo
   restartPolicy: Always
