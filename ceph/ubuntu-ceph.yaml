@@ -10,7 +10,7 @@ spec:
     name: ubuntu-ceph
     volumeMounts:
     - name: ceph
-      mountPath: "/fuck"
+      mountPath: "/data"
   volumes:
     - rbd: 
       name: "ceph"
