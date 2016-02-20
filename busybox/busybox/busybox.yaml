@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   containers:
-  - image: busybox
+  - image: registry.docker:5000/busybox
     command:
       - sleep
       - "36000"

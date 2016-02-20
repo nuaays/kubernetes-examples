@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:14.04
 MAINTAINER dawei.li@yeepay.com
 
 RUN apt-get update -y
@@ -21,6 +21,6 @@ EXPOSE 80
 
 ADD supervisord.conf /etc/supervisor/conf.d/kibana.conf
 
-ADD run ./run
-RUN chmod +x ./run
-CMD ./run
+# ADD run ./run
+# RUN chmod +x ./run
+# CMD ./run
