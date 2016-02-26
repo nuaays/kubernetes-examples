@@ -3,25 +3,24 @@ MAINTAINER dawei.li@yeepay.com
 
 # Add User
 RUN mkdir -p /home/kafka
-RUN adduser --disabled-password --gecos '' kafka --home /home/kafka
-RUN adduser kafka sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN chown kafka.kafka /home/kafka -R
-RUN whoami
-USER kafka
-RUN whoami
+# RUN adduser --disabled-password --gecos '' kafka --home /home/kafka
+# RUN adduser kafka sudo
+# RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# RUN chown kafka.kafka /home/kafka -R
+# RUN whoami
+# USER kafka
+# RUN whoami
 
 WORKDIR /home/kafka
 
 # Install Kafka
+RUN sudo sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
 RUN sudo apt-get update -yqq && sudo apt-get install -y default-jre wget
 
-RUN mkdir -p /home/kafka/Downloads
-RUN wget "http://mirror.cc.columbia.edu/pub/software/apache/kafka/0.8.2.1/kafka_2.11-0.8.2.1.tgz" -O ~/Downloads/kafka.tgz
-RUN mkdir -p /home/kafka/kafka
-WORKDIR /home/kafka/kafka
-RUN tar -xvzf ~/Downloads/kafka.tgz --strip 1
-RUN echo "delete.topic.enable = true" >> ~/kafka/config/server.properties
+ADD kafka_2.11-0.8.2.1.tgz /home/kafka
+RUN mv /home/kafka/kafka_2.11-0.8.2.1 /home/kafka/kafka
+#RUN tar -xvzf /home/kafka/kafka_2.11-0.8.2.1.tgz
+#RUN echo "delete.topic.enable = true" >> ~/kafka/config/server.properties
 
 ## Install KafkaT
 # RUN sudo apt-get install -y ruby ruby-dev build-essential

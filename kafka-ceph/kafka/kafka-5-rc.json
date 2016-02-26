@@ -10,12 +10,14 @@
   "spec": {
     "replicas": 1,
     "selector": {
-      "name": "kafka-5"
+      "component": "kafka",
+      "role": "kafka-5"
     },
     "template": {
       "metadata": {
         "labels": {
-          "component": "kafka"
+          "component": "kafka",
+	  "role": "kafka-5"
         },
         "name": "kafka-5"
       },
@@ -23,7 +25,7 @@
         "containers": [
           {
             "name": "kafka-5",
-            "image": "registry.docker:5000/yeeepay/kafka:latest",
+            "image": "registry.docker:5000/yeepay/kafka-root-cn:2.11",
             "ports": [
               {
                 "containerPort": 9092
@@ -34,16 +36,16 @@
               "-c"
             ],
             "args": [
-              "sed -i -- 's/broker.id=0/broker.id=5/g' /home/kafka/kafka/config/server.properties && sed -i -- 's/num.network.threads=3/num.network.threads=10/g' /home/kafka/kafka/config/server.properties && sed -i -- 's/num.io.threads=8/num.io.threads=20/g' /home/kafka/kafka/config/server.properties && sed -i -- 's/zookeeper.connect=localhost:2181/zookeeper.connect=\"zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181,zookeeper-4:2181,zookeeper-5:2181\"/g' /home/kafka/kafka/config/server.properties && /home/kafka/kafka/bin/kafka-server-start.sh /home/kafka/kafka/config/server.properties "
+              "sed -i -- 's/broker.id=0/broker.id=5/g' /home/kafka/kafka/config/server.properties && sed -i -- 's/num.network.threads=3/num.network.threads=10/g' /home/kafka/kafka/config/server.properties && sed -i -- 's/num.io.threads=8/num.io.threads=20/g' /home/kafka/kafka/config/server.properties && sed -i -- 's/zookeeper.connect=localhost:2181/zookeeper.connect=zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181,zookeeper-4:2181,zookeeper-5:2181/g' /home/kafka/kafka/config/server.properties && /home/kafka/kafka/bin/kafka-server-start.sh /home/kafka/kafka/config/server.properties "
 	    ],
 	    "resources": {
 	      "requests": {
 	        "cpu": "10",
-		"memory": "8192MiB"
+		"memory": "8192M"
 	      },
 	      "limits": {
 	        "cpu": "20",
-		"memory": "20480MiB"
+		"memory": "20480M"
 	      }
 	    },
             "volumeMounts": [

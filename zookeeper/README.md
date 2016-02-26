@@ -275,6 +275,8 @@ zookeepercli --servers zookeeper-1,zookeeper-2,zookeeper-3 --format=json -c lsr 
 zookeepercli --servers zookeeper-1,zookeeper-2,zookeeper-3 --format=json -c lsr "/demo_only"
 zookeepercli --servers zookeeper-1,zookeeper-2,zookeeper-3 --format=json -c create /demo_only some_value
 zookeepercli --servers zookeeper-1,zookeeper-2,zookeeper-3 --format=json -c get /demo_only
+#ls kafka broker
+./zookeepercli --servers 192.168.3.209,192.168.3.186,192.168.3.171,192.168.3.195,192.168.3.15 -c ls /brokers/ids
 ```
 
 -----------------------------------------------------------------------------------------------------------------------
