@@ -4,10 +4,13 @@
       "component": "kafka",
       "role": "kafka-2"
     },
+    "type": "NodePort",
     "ports": [
       {
+        "nodePort": 32742,
         "targetPort": 9092,
         "port": 9092,
+	"protocol": "TCP",
         "name": "kafka"
       }
     ]
