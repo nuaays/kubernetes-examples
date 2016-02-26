@@ -10,7 +10,7 @@
   "spec": {
     "replicas": 3,
     "selector": {
-      "name": "kafka-manager"
+      "component": "kafka-manager"
     },
     "template": {
       "metadata": {
@@ -23,7 +23,7 @@
         "containers": [
           {
             "name": "kafka-manager",
-            "image": "registry.docker:5000/yeeepay/kafka-manager:1.2.0",
+            "image": "registry.docker:5000/yeepay/kafka-manager:1.2.0",
 	    "env": [
 	      {
                 "name": "ZK_SERVER_LIST",
@@ -47,12 +47,12 @@
               "-c"
             ],
             "args": [
-              "sed -i -- 's/kafka-manager.zkhosts=ZK_SERVER_LIST/kafka-manager.zkhosts=\"zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181,zookeeper-4:2181,zookeeper-5:2181\"/g' /opt/kafka-manager-1.2.0/conf/application.conf"
+              "sed -i -- 's/kafka-manager.zkhosts=ZK_SERVER_LIST/kafka-manager.zkhosts=\"zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181,zookeeper-4:2181,zookeeper-5:2181\"/g' /opt/kafka-manager-1.2.0/conf/application.conf && cat /opt/kafka-manager-1.2.0/conf/application.conf && /opt/start.sh "
 	    ],
 	    "resources": {
 	      "limits": {
 	        "cpu": "2",
-		"memory": "4096MiB"
+		"memory": "4096M"
 	      }
 	    },
             "volumeMounts": [

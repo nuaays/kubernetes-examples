@@ -2,14 +2,14 @@
   "spec": {
     "ports": [
       {
-        "nodePort": 32741,
+        "nodePort": 32731,
         "targetPort": 9001,
         "port": 9001,
         "protocol": "TCP",
         "name": "manager"
       },
       {
-        "nodePort": 32742,
+        "nodePort": 32732,
         "targetPort": 8086,
         "port": 8086,
         "protocol": "TCP",
