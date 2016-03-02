@@ -1,5 +1,5 @@
-# Kafka:2.11_0.9.0
-# yeepay/kafka:2.11-0.9.0
+# Kafka:2.11_0.8.2
+# yeepay/kafka:2.11-0.8.2
 FROM ubuntu:14.04
 MAINTAINER dawei.li@yeepay.com 
 
@@ -19,7 +19,10 @@ WORKDIR /home/kafka
 RUN sudo sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list
 RUN sudo apt-get update -yqq && sudo apt-get install -y default-jre wget
 
-ADD kafka_2.11-0.9.0.1/ /home/kafka/
+ADD kafka_2.11-0.8.2.1 /home/kafka/
+# RUN mv /home/kafka/kafka_2.11-0.8.2.1 /home/kafka/kafka
+# RUN tar -xvzf /home/kafka/kafka_2.11-0.8.2.1.tgz
+# RUN echo "delete.topic.enable = true" >> ~/kafka/config/server.properties
 
 ## Install KafkaT
 # RUN sudo apt-get install -y ruby ruby-dev build-essential
