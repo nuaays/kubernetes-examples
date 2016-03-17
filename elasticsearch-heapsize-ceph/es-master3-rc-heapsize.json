@@ -11,7 +11,7 @@
                 "name": "ceph-secret"
               },
               "user": "admin",
-              "image": "esdata4",
+              "image": "esmaster3",
               "pool": "rbd",
               "monitors": [
                 "node1:6789",
@@ -19,7 +19,7 @@
                 "node3:6789"
               ]
             },
-            "name": "es-data4"
+            "name": "es-master3"
           }
         ],
         "serviceAccount": "elasticsearch",
@@ -28,7 +28,7 @@
           {
             "volumeMounts": [
               {
-                "name": "es-data4",
+                "name": "es-master3",
                 "mountPath": "/data"
               }
             ],
@@ -47,8 +47,9 @@
                 "containerPort": 9300
               }
             ],
-            "name": "es-data4",
+            "name": "es-master3",
             "image": "registry.docker:5000/yeepay/elasticsearch:2.1.1",
+            "imagePullPolicy": "IfNotPresent",
             "env": [
               {
                 "value": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt",
@@ -67,8 +68,12 @@
                 "name": "CLUSTER_NAME"
               },
               {
-                "value": "false",
+                "value": "true",
                 "name": "NODE_MASTER"
+              },
+              {
+                "value": "false",
+                "name": "NODE_DATA"
               },
               {
                 "value": "false",
@@ -84,21 +89,24 @@
       },
       "metadata": {
         "labels": {
-          "role": "data4",
+          "role": "master",
+	  "master3": "true",
           "component": "elasticsearch"
         }
       }
     },
     "selector": {
-      "role": "data4",
+      "role": "master",
+      "master3": "true",
       "component": "elasticsearch"
     },
     "replicas": 1
   },
   "metadata": {
-    "name": "es-data4",
+    "name": "es-master3",
     "labels": {
-      "role": "data4",
+      "role": "master",
+      "master3": "true",
       "component": "elasticsearch"
     }
   },

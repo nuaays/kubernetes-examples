@@ -14,7 +14,9 @@
               "image": "esdata1",
               "pool": "rbd",
               "monitors": [
-                "172.17.1.11:6789"
+                "node1:6789",
+                "node2:6789",
+                "node3:6789"
               ]
             },
             "name": "es-data1"
@@ -74,7 +76,7 @@
               },
               {
                 "name": "ES_HEAP_SIZE",
-                "value": "16g"
+                "value": "32g"
               }
             ]
           }

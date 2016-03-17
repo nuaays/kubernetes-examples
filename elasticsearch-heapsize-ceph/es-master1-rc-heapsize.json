@@ -81,7 +81,7 @@
               },
               {
                 "name": "ES_HEAP_SIZE",
-                "value": "16g"
+                "value": "32g"
               }
             ]
           }

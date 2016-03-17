@@ -11,15 +11,13 @@
                 "name": "ceph-secret"
               },
               "user": "admin",
-              "image": "esmaster3",
+              "image": "esdata2",
               "pool": "rbd",
               "monitors": [
-                "node1:6789",
-                "node2:6789",
-                "node3:6789"
+                "172.17.1.11:6789"
               ]
             },
-            "name": "es-master3"
+            "name": "es-data2"
           }
         ],
         "serviceAccount": "elasticsearch",
@@ -28,7 +26,7 @@
           {
             "volumeMounts": [
               {
-                "name": "es-master3",
+                "name": "es-data2",
                 "mountPath": "/data"
               }
             ],
@@ -47,9 +45,8 @@
                 "containerPort": 9300
               }
             ],
-            "name": "es-master3",
+            "name": "es-data1",
             "image": "registry.docker:5000/yeepay/elasticsearch:2.1.1",
-            "imagePullPolicy": "IfNotPresent",
             "env": [
               {
                 "value": "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt",
@@ -68,20 +65,16 @@
                 "name": "CLUSTER_NAME"
               },
               {
-                "value": "true",
-                "name": "NODE_MASTER"
-              },
-              {
                 "value": "false",
-                "name": "NODE_DATA"
+                "name": "NODE_MASTER"
               },
               {
                 "value": "false",
                 "name": "HTTP_ENABLE"
               },
               {
-                "name": "ES_HEAP_SIZE",
-                "value": "16g"
+                "value": "32g",
+                "name": "ES_HEAP_SIZE"
               }
             ]
           }
@@ -89,24 +82,21 @@
       },
       "metadata": {
         "labels": {
-          "role": "master",
-	  "master3": "true",
+          "role": "data2",
           "component": "elasticsearch"
         }
       }
     },
     "selector": {
-      "role": "master",
-      "master3": "true",
+      "role": "data2",
       "component": "elasticsearch"
     },
     "replicas": 1
   },
   "metadata": {
-    "name": "es-master3",
+    "name": "es-data2",
     "labels": {
-      "role": "master",
-      "master3": "true",
+      "role": "data2",
       "component": "elasticsearch"
     }
   },
