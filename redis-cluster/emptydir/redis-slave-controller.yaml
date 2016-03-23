@@ -1,20 +1,20 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: redis-slave-memory
+  name: redis-slave
   labels:
-    name: redis-slave-memory
+    name: redis-slave
 spec:
   replicas: 2
   selector:
-    name: redis-slave-memory
+    name: redis-slave
   template:
     metadata:
       labels:
-        name: redis-slave-memory
+        name: redis-slave
     spec:
       containers:
-      - name: worker-memory
+      - name: worker
         image: registry.docker:5000/gcr/redis-slave:v1
         env:
         - name: GET_HOSTS_FROM
