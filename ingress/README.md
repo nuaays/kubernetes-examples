@@ -164,70 +164,49 @@ Using a ConfigMap it is possible to customize the defaults in nginx.
 
 Please check the [tcp services](examples/custom-configuration/README.md) example
 
+```yaml
 
-### NGINX status page
-
-The ngx_http_stub_status_module module provides access to basic status information. This is the default module active in the url `/nginx_status`.
-This controller provides an alternitive to this module using [nginx-module-vts](https://github.com/vozlt/nginx-module-vts) third party module.
-To use this module just provide a ConfigMap with the key `enable-vts-status=true`. The URL is exposed in the port 8080.
-Please check the example `example/rc-default.yaml`
-
-![nginx-module-vts screenshot](https://cloud.githubusercontent.com/assets/3648408/10876811/77a67b70-8183-11e5-9924-6a6d0c5dc73a.png "screenshot with filter")
-
-To extract the information in JSON format the module provides a custom URL: `/nginx_status/format/json`
-
-
-## Troubleshooting
-
-Problems encountered during [1.2.0-alpha7 deployment](https://github.com/kubernetes/kubernetes/blob/master/docs/getting-started-guides/docker.md):
-* make setup-files.sh file in hypercube does not provide 10.0.0.1 IP to make-ca-certs, resulting in CA certs that are issued to the external cluster IP address rather then 10.0.0.1 -> this results in nginx-third-party-lb appearing to get stuck at "Utils.go:177 - Waiting for default/default-http-backend" in the docker logs.  Kubernetes will eventually kill the container before nginx-third-party-lb times out with a message indicating that the CA certificate issuer is invalid (wrong ip), to verify this add zeros to the end of initialDelaySeconds and timeoutSeconds and reload the RC, and docker will log this error before kubernetes kills the container.
-  * To fix the above, setup-files.sh must be patched before the cluster is inited (refer to https://github.com/kubernetes/kubernetes/pull/21504)
-
-### Custom errors
-
-The default backend provides a way to customize the default 404 page. This helps but sometimes is not enough.
-Using the flag `--custom-error-service` is possible to use an image that must be 404 compatible and provide the route /error
-[Here](https://github.com/aledbf/contrib/tree/nginx-debug-server/Ingress/images/nginx-error-server) there is an example of the the image
-
-The route `/error` expects two arguments: code and format
-* code defines the wich error code is expected to be returned (502,503,etc.)
-* format the format that should be returned For instance /error?code=504&format=json or /error?code=502&format=html
-
-Using a volume pointing to `/var/www/html` directory is possible to use a custom error
-
-
-### Debug
-
-Using the flag `--v=XX` it is possible to increase the level of logging.
-In particular:
-- `--v=2` shows details using `diff` about the changes in the configuration in nginx
-
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: nginx-ingress-lb
+spec:
+  template:
+    metadata:
+      labels:
+        name: nginx-ingress-lb
+    spec:
+      containers:
+      - image: gcr.io/google_containers/nginx-ingress-controller:0.4
+        name: nginx-ingress-lb
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10249
+            scheme: HTTP
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        # use downward API
+        env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+        ports:
+        - containerPort: 80
+          hostPort: 80
+        - containerPort: 443
+          hostPort: 4444
+        args:
+        - /nginx-ingress-controller
+        - --default-backend-service=default/default-http-backend
 ```
-I0316 12:24:37.581267       1 utils.go:148] NGINX configuration diff a//etc/nginx/nginx.conf b//etc/nginx/nginx.conf
-I0316 12:24:37.581356       1 utils.go:149] --- /tmp/922554809  2016-03-16 12:24:37.000000000 +0000
-+++ /tmp/079811012  2016-03-16 12:24:37.000000000 +0000
-@@ -235,7 +235,6 @@
-
-     upstream default-echoheadersx {
-         least_conn;
--        server 10.2.112.124:5000;
-         server 10.2.208.50:5000;
-
-     }
-I0316 12:24:37.610073       1 command.go:69] change in configuration detected. Reloading...
-```
-
-- `--v=3` shows details about the service, Ingress rule, endpoint changes and it dumps the nginx configuration in JSON format
-- `--v=5` configures NGINX in [debug mode](http://nginx.org/en/docs/debugging_log.html)
-
-
-
-### Retries in no idempotent methods
-
-Since 1.9.13 NGINX will not retry non-idempotent requests (POST, LOCK, PATCH) in case of an error.
-The previous behavior can be restored using `retry-non-idempotent=true` in the configuration ConfigMap
-
-
-## Limitations
-
-TODO
