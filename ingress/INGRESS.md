@@ -78,6 +78,10 @@ WORKDIR /
 CMD ["/nginx-ingress-controller"]
 ```
 
+```bash
+docker build -t nginx-ingress-controller:0.5 .
+```
+
 ```tmpl
 {{ $cfg := .cfg }}
 daemon off;
