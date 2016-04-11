@@ -15,7 +15,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60      
       containers:
-      - image: gcr.io/google_containers/nginx-ingress-controller:0.5
+      - image: nginx-ingress-controller:0.5
         name: nginx-ingress-lb
         imagePullPolicy: Always
         livenessProbe:
@@ -423,4 +423,31 @@ stream {
             }
         }
 {{ end }}
+```
+
+```yaml
+# An Ingress with 2 hosts and 3 endpoints
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echomap
+spec:
+  backend:
+    serviceName:
+    servicePort: 80
+  rules:
+  - host: caas.one
+    http:
+      paths:
+      - path: /kibana
+        backend:
+          serviceName: kibana
+          servicePort: 5601
+  - host: jingru.io
+    http:
+      paths:
+      - path: /es
+        backend:
+          serviceName: elasticsearch
+          servicePort: 9200
 ```
