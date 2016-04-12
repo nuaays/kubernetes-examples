@@ -35,6 +35,13 @@ kubectl create -f nginx-deployment.yaml --record
 kubectl get deployement
 kubectl get rc
 kubectl get pods --show-labels
+NAME                                READY     STATUS              RESTARTS   AGE       LABELS
+nginx-deployment-2035384211-nllka   1/1       Running             0          23m       app=nginx,pod-template-hash=2035384211
+nginx-deployment-2035384211-w1jqv   1/1       Running             0          23m       app=nginx,pod-template-hash=2035384211
+nginx-deployment-2035384211-x0c1a   1/1       Running             0          23m       app=nginx,pod-template-hash=2035384211
+
+NAME               DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3         3         3            3           22m
 ```
 
 ### The Status of a Deployment
