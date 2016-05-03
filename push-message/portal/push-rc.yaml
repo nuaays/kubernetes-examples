@@ -24,7 +24,7 @@ spec:
             memory: "4096Mi"
         livenessProbe:
           httpGet:
-            path: /health
+            path: /push-portal/healthz
             port: 8080
             scheme: HTTP
           initialDelaySeconds: 120
