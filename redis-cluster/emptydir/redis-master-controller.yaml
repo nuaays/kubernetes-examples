@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: master
-        image: registry.docker:5000/redis
+        image: registry.test.com:5000/redis
         ports:
         - containerPort: 6379
