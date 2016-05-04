@@ -31,7 +31,19 @@ spec:
         volumeMounts:
         - mountPath: /apps/log
           name: storage
+        - mountPath: /var/yeepay/pushcert
+          name: cert
       volumes:
       - name: storage
         source:
           emptyDir: {}
+      - name: cert
+        rbd: 
+          monitors:
+            - "172.21.1.11:6789"
+          pool: rbd
+          image: pushios
+          secretRef:
+            name: ceph-secret
+          fsType: ext4
+          readOnly: false
