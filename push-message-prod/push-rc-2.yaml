@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: push-portal-1
+  name: push-portal-2
   labels:
-    name: push-portal
+    name: push-portal-2
 spec:
   replicas: 1
   selector:
-    name: push-portal-1
+    name: push-portal-2
     role: portal
   template:
     metadata:
       labels:
-        name: push-portal-1
+        name: push-portal-2
         role: portal
     spec:
       containers:
@@ -39,7 +39,7 @@ spec:
           monitors:
             - "10.149.149.1:6789"
           pool: rbd
-          image: push-portal-1
+          image: push-portal-2
           secretRef:
             name: ceph-secret
           fsType: ext4

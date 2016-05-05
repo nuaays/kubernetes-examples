@@ -4,15 +4,16 @@ metadata:
   name: push-android-1
   labels:
     name: push-android-1
-    role: android
 spec:
   replicas: 1
   selector:
     name: push-android-1
+    role: android
   template:
     metadata:
       labels:
         name: push-android-1
+        role: android
     spec:
       containers:
       - name: push-android

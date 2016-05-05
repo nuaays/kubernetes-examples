@@ -4,15 +4,16 @@ metadata:
   name: push-portal-2
   labels:
     name: push-portal-2
-    role: role
 spec:
   replicas: 1
   selector:
     name: push-portal-2
+    role: role
   template:
     metadata:
       labels:
         name: push-portal-2
+        role: role
     spec:
       containers:
       - name: push-portal

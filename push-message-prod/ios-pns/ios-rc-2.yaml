@@ -4,15 +4,16 @@ metadata:
   name: push-ios-2
   labels:
     name: push-ios-2
-    role: ios
 spec:
   replicas: 1
   selector:
     name: push-ios-2
+    role: ios
   template:
     metadata:
       labels:
         name: push-ios-2
+        role: ios
     spec:
       containers:
       - name: push-ios
