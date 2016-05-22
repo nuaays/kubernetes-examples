@@ -40,9 +40,11 @@ spec:
       - name: mongo-node-1
         rbd: 
           monitors:
-            - "172.21.1.11:6789"
+            - "10.149.149.2:6789"
+            - "10.149.149.3:6789"
+            - "10.149.149.4:6789"
           pool: rbd
-          image: mongo-node-1
+          image: push-node-1
           secretRef:
             name: ceph-secret
           fsType: ext4
