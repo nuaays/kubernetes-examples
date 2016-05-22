@@ -34,11 +34,21 @@ spec:
           ports:
             - containerPort: 27017
           volumeMounts:
-            - name: mongo-persistent-storage
-              mountPath: /data/db
+          - name: mongo-node-2
+            mountPath: /data/db
       volumes:
-        - name: mongo-persistent-storage
-          emptyDir: {}
+      - name: mongo-node-2
+        rbd: 
+          monitors:
+            - "10.149.149.2:6789"
+            - "10.149.149.3:6789"
+            - "10.149.149.4:6789"
+          pool: rbd
+          image: push-node-2
+          secretRef:
+            name: ceph-secret
+          fsType: ext4
+          readOnly: false
     metadata:
       labels:
         name: mongo-node-2
