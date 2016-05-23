@@ -158,7 +158,10 @@ Figure 2 shows the configuration for a second member of the replica set.
 ![](images/figure2.png)
 
 
+---------------------------------------------------------------
+
 Figure 3 shows the full target configuration
+
 ![](images/figure3.png)
 
 ##### Create four members with kubernetes rc and persistent-disk ceph rbd
