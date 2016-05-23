@@ -150,12 +150,16 @@ kubectl create -f mongo-rc-rbd-1.yaml
 kubectl create -f mongo-svc-1.yaml
 ```
 
-#### MongoDB replica set: Four members 
+#### MongoDB replica set: Three members 
 ---------------------------------------------------------------
+
+Figure 2 shows the configuration for a second member of the replica set. 
 
 ![](images/figure2.png)
 
-Figure 2 shows the configuration for a second member of the replica set. 
+
+Figure 3 shows the full target configuration
+![](images/figure3.png)
 
 ##### Create four members with kubernetes rc and persistent-disk ceph rbd
 
@@ -249,3 +253,8 @@ rs.remove("172.16.7.3:27017")
 ```
 
 
+#### Reference
+
+* A MongoDB White Paper: <<Enabling Microservices Containers & Orchestration Explained March 2016>>
+
+* Thanks to Sandeep Dinesh(@SandeepDinesh) and [his article](https://medium.com/google-cloud/mongodb-replica-sets-with-kubernetes-d96606bd9474#.6sz1d6tvc)
