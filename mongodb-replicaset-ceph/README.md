@@ -258,6 +258,6 @@ rs.remove("172.16.7.3:27017")
 
 #### Reference
 
-* A MongoDB White Paper: <<Enabling Microservices Containers & Orchestration Explained March 2016>>
+* A MongoDB White Paper: <*Enabling Microservices Containers & Orchestration Explained March 2016*>
 
 * Thanks to Sandeep Dinesh(@SandeepDinesh) and [his article](https://medium.com/google-cloud/mongodb-replica-sets-with-kubernetes-d96606bd9474#.6sz1d6tvc)
