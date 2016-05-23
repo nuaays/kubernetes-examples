@@ -153,13 +153,16 @@ kubectl create -f mongo-svc-1.yaml
 #### MongoDB replica set: Four members 
 ---------------------------------------------------------------
 
+![](images/figure2.png)
+
+Figure 2 shows the configuration for a second member of the replica set. 
+
 ##### Create four members with kubernetes rc and persistent-disk ceph rbd
 
 ```bash
 kubectl create -f mongo-rc-rbd-1.yaml
 kubectl create -f mongo-rc-rbd-2.yaml
 kubectl create -f mongo-rc-rbd-3.yaml
-kubectl create -f mongo-rc-rbd-4.yaml
 ```
 
 ##### Create four service for the four members with kubernetes svc
@@ -170,7 +173,6 @@ You can access every mongo node use its service:
 kubectl create -f mongo-svc-1.yaml
 kubectl create -f mongo-svc-2.yaml
 kubectl create -f mongo-svc-3.yaml
-kubectl create -f mongo-svc-4.yaml
 ```
 
 But we'd like a Single entrypoint to access mongodb replica set sevice:
