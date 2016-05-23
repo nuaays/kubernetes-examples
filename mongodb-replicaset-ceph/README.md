@@ -164,7 +164,7 @@ Figure 3 shows the full target configuration
 
 ![](images/figure3.png)
 
-##### Create four members with kubernetes rc and persistent-disk ceph rbd
+##### Create three members with kubernetes rc and persistent-disk ceph rbd
 
 ```bash
 kubectl create -f mongo-rc-rbd-1.yaml
@@ -172,7 +172,7 @@ kubectl create -f mongo-rc-rbd-2.yaml
 kubectl create -f mongo-rc-rbd-3.yaml
 ```
 
-##### Create four service for the four members with kubernetes svc
+##### Create three service for the three members with kubernetes svc
 
 You can access every mongo node use its service:
 
