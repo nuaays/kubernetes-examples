@@ -208,14 +208,42 @@ No events.
 
 
 ```bash
-mongo --host 192.168.3.62
+mongo --host 172.16.44.2
+```
 
-rs.initiate()
-conf=rs.conf()
-conf.members[0].host="172.16.44.2:27017"
-rs.reconfig(conf)
-rs.add("172.16.7.2")
+```javascript
+config = {
+    "_id" : "rs0",
+    "members" : [
+                  {
+                     "_id" : 0,
+                     "host" : "mongo-1.default.svc:27017",
+                     priority: 4
+                  },
+                  {
+                     "_id" : 5,
+                     "host" : "mongo-2.default.svc:27017",
+                     priority: 3
+                  },
+                  {
+                     "_id" : 3,
+                     "host" : "mongo-3.default.svc:27017",
+                     priority: 3
+                  }
+     ]
+}
+```
+
+```bash
+rs.reconfig(config, {"force": true})
+rs.status()
+```
+
+You also can add rs node by add and remove command
+
+```bash
 rs.add("172.16.7.3")
+rs.remove("172.16.7.3:27017")
 ```
 
 
