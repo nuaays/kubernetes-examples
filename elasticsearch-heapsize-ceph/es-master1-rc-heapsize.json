@@ -14,7 +14,7 @@
               "image": "esmaster1",
               "pool": "rbd",
               "monitors": [
-                "node1:6789",
+                "node4:6789",
                 "node2:6789",
                 "node3:6789"
               ]
