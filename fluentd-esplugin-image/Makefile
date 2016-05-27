@@ -14,11 +14,20 @@
 
 .PHONY:	build push
 
-IMAGE = fluentd-elasticsearch
+IMAGE = tdagent-base
 TAG = 1.15
 
 build:	
-	docker build -t gcr.io/google_containers/$(IMAGE):$(TAG) .
+	docker build -t registry.docker:5000/$(IMAGE):$(TAG) .
 
 push:	
-	gcloud docker --server=gcr.io push gcr.io/google_containers/$(IMAGE):$(TAG)
+	docker push registry.docker:5000/$(IMAGE):$(TAG)
+
+clean:	
+	docker rmi -f registry.docker:5000/$(IMAGE):$(TAG)
+
+deploy:
+	kubectl create -f fluentd-daemonset.yaml
+
+clear:
+	kubectl delete -f fluentd-daemonset.yaml
