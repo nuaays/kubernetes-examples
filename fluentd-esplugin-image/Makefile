@@ -14,7 +14,7 @@
 
 .PHONY:	build push
 
-IMAGE = tdagent-base
+IMAGE = tdagent
 TAG = 1.15
 
 build:	

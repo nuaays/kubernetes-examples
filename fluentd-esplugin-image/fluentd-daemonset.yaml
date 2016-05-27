@@ -13,11 +13,11 @@ spec:
       restartPolicy: "Always"
       containers:
       - name: fluentd
-        image: registry.docker:5000/tdagent-base:1.15
+        image: registry.docker:5000/tdagent:1.15
         imagePullPolicy: "Always"
         env:
         - name: ES_HOST
-          value: http://elasticsearch-logging.kube-system
+          value: http://elasticsearch.default
         - name: ES_PORT
           value: "9200"
         volumeMounts:
