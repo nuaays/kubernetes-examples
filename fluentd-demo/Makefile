@@ -22,3 +22,9 @@ build:
 
 push:	
 	docker push registry.docker:5000/$(IMAGE):$(TAG)
+
+deploy:
+	kubectl create -f fluent-demo-rc.yaml
+
+clear:
+	kubectl delete -f fluent-demo-rc.yaml
