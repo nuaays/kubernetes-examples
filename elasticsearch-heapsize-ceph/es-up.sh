@@ -1,5 +1,7 @@
 #!/bin/bash
 
+kubectl create -f secret/
+
 kubectl create -f service-account.json
 kubectl create -f es-discovery-svc.json
 kubectl create -f es-svc.json
