@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq:3.6.0
+        image: registry.docker:5000/rabbitmq:3.6.0
         ports:
         - containerPort: 5672

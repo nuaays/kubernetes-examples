@@ -4,21 +4,21 @@ metadata:
   name: memcached
   labels:
     role: memcached
-    type: standalone
+    mode: standalone
 spec:
   replicas: 1
   selector:
     role: memcached
-    type: standalone
+    mode: standalone
   template:
     metadata:
       labels:
         role: memcached
-        type: standalone
+        mode: standalone
     spec:
       containers:
       - name: memcached
-        image: "memcached:1.4.24"
+        image: "registry.docker:5000/memcached:1.4.24"
         ports:
         - containerPort: 11211
         resources:

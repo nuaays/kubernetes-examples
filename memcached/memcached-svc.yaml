@@ -12,5 +12,5 @@ spec:
     nodePort: 32211
     protocol: TCP
   selector:
-    provider: memcached
-    mode: cluster
+    role: memcached
+    mode: standalone
