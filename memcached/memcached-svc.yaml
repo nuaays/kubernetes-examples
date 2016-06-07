@@ -9,6 +9,7 @@ spec:
   ports:
   - port: 11211
     targetPort: 11211
+    nodePort: 32211
     protocol: TCP
   selector:
     provider: memcached
