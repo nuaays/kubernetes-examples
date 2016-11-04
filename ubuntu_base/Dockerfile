@@ -1,10 +1,12 @@
-FROM ubuntu:latest
-ADD jdk1.7.0_79 /usr/local/jdk1.7.0_79
+FROM registry.test.com:5000/ubuntu:latest
+
+MAINTAINER yong.li-1@yeepay.com
+
 ADD profile /etc/
 ADD locale /etc/default/
-ENV JAVA_HOME /usr/local/jdk1.7.0_79
-ENV PATH $JAVA_HOME/bin:$PATH
+
 ENV LANG en_US.UTF-8
+
 RUN sed -i '/archive.ubuntu.com/s/archive.ubuntu.com/cn.archive.ubuntu.com/g' /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install telnet -y
@@ -15,17 +17,8 @@ RUN apt-get install wget -y
 RUN apt-get install curl -y
 RUN apt-get install gdb -y
 RUN apt-get install traceroute -y
-RUN apt-get install vim -y
-RUN mkdir -p /apps/product
-ENV CATALINA_HOME /apps/product/tomcat7
-ENV CATALINA_SH /apps/product/tomcat7/bin/catalina.sh
-RUN useradd app
-EXPOSE 8080
-
-# ADD tomcat7 /apps/product/tomcat7
-# RUN chown -Rf app:app /apps/product/tomcat7
-# USER app
-
-ADD localtime /etc/localtime
-
-# ENTRYPOINT [ "/apps/product/tomcat7/bin/catalina.sh", "run" ]
+RUN apt-get install net-tools iputils-ping -y
+RUN apt-get install -y language-pack-zh-hans
+RUN echo "Asia/Shanghai" > /etc/timezone
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN locale-gen en_US.UTF-8
