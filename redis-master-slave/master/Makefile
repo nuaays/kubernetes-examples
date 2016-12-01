@@ -8,9 +8,9 @@ test:
 	docker run -ti -e "MASTERAUTH=password" -e "PASSWORD=password" img.reg.3g:15000/${TAG} /bin/bash
 clear:
 	docker rmi -f img.reg.3g:15000/${TAG}
-deploy:
-	kubectl create -f account-ws-dp.json
-	kubectl create -f account-ws-svc.json
-undeploy:
-	kubectl delete -f account-ws-dp.json
-	kubectl delete -f account-ws-svc.json
+# deploy:
+# 	kubectl create -f account-ws-dp.json
+# 	kubectl create -f account-ws-svc.json
+# undeploy:
+# 	kubectl delete -f account-ws-dp.json
+# 	kubectl delete -f account-ws-svc.json
