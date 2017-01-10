@@ -29,7 +29,17 @@
                 "name": "http",
                 "protocol": "TCP"
               }
-            ]
+            ],
+	    "resources": {
+	      "requests": {
+	      	"cpu": 2,
+		"memory": "4096Mi"
+	      },
+	      "limits": {
+	        "cpu": 4,
+		"memory": "8192Mi"
+	      }
+	    } 
           }
         ],
         "restartPolicy": "Always"
