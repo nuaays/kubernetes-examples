@@ -9,3 +9,4 @@ kubectl delete -f service-account.json
 
 kubectl delete -f es-discovery-svc.json
 kubectl delete -f es-svc.json
+kubectl delete -f es-master-svc.json

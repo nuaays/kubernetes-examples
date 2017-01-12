@@ -4,7 +4,7 @@
   "metadata": {
     "labels": {
       "component": "elasticsearch",
-      "master1": "true",
+      "master": "true",
       "role": "log-es-master"
     },
     "name": "log-es-master"
@@ -13,14 +13,14 @@
     "replicas": 1,
     "selector": {
       "component": "elasticsearch",
-      "master1": "true",
+      "master": "true",
       "role": "log-es-master"
     },
     "template": {
       "metadata": {
         "labels": {
           "component": "elasticsearch",
-          "master1": "true",
+          "master": "true",
           "role": "log-es-master"
         }
       },
