@@ -7,7 +7,7 @@ Use Kafka cluster in Kubernetes cluster
 ##### 容器中其他节点不能通过这个随机生成的hostname来寻址，解决方案是：在容器启动时，将容器的eth0的ip作为kafka注册到zookeeper集群中的主机名，
 ##### 这样，其它kafka节点和覆盖网络内部的组件就可以访问kafka，并能写入数据。
 ---- 
-##### 在这样做之前，kafka集群可以创建topic，也可显示、列出topic，producer不能写入，问题类似[Kafka Producer Can't Fetch Metadata Problem](stackoverflow.com/questions/30606447/kafka-consumer-fetching-metadata-for-topics-failed)
+##### 在这样做之前，kafka集群可以创建topic，也可显示、列出topic，producer不能写入，原因是kafka的配置中(server.properties)中要配置host.name和advertised.port,问题类似[Kafka Producer Can't Fetch Metadata Problem](stackoverflow.com/questions/30606447/kafka-consumer-fetching-metadata-for-topics-failed)
 ##### 由于brokerid等都是在容器创建后、kafka启动前用入口脚本替换相应的配置，还有ceph存储写入的问题，所以我们使用同一的RC，对于Pod我们也可以设置自动重启，所以，对已一个的Pod，RC和Pod从这点说没有什么区别
 ##### Pod的metadata的name就是pod容器运行后的hostname
 
