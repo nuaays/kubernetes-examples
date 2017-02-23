@@ -8,21 +8,25 @@
     }
   },
   "spec": {
+    "type": "NodePort",
     "ports": [
       {
         "name": "client",
         "port": 2181,
-        "targetPort": 2181
+        "targetPort": 2181,
+	"nodePort": 32190
       },
       {
         "name": "followers",
         "port": 2888,
-        "targetPort": 2888
+        "targetPort": 2888,
+	"nodePort": 32191
       },
       {
         "name": "election",
         "port": 3888,
-        "targetPort": 3888
+        "targetPort": 3888,
+	"nodePort": 32192
       }
     ],
     "selector": {

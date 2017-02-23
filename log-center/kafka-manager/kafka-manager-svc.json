@@ -16,13 +16,13 @@
         "name": "kafka-manager",
         "port": 9001,
         "protocol": "TCP",
-	"nodePort": 30049
+	"nodePort": 30001
       },
       {
         "name": "offset",
         "port": 8086,
         "protocol": "TCP",
-	"nodePort": 30048
+	"nodePort": 30086
       }
     ],
     "type": "NodePort"
