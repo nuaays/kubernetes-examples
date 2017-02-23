@@ -1,6 +1,4 @@
-
 #!/bin/bash
-
 
 echo "$SERVER_ID / $MAX_SERVERS" 
 if [ ! -z "$SERVER_ID" ] && [ ! -z "$MAX_SERVERS" ]; then
