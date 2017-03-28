@@ -26,8 +26,8 @@ spec:
             cpu: 4
             memory: 10Gi
           requests:
-            cpu: 4
-            memory: 10Gi
+            cpu: 500m
+            memory: 900M
         volumeMounts:
         - name: registry
           mountPath: /var/lib/registry
