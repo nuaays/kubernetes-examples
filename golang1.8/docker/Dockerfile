@@ -10,3 +10,5 @@ ADD go /usr/local/go
 ENV GOROOT /usr/local/go
 ENV GOPATH /Golang
 ENV PATH /usr/local/go/bin:$PATH
+
+ADD Dockerfile /
